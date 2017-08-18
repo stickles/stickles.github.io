@@ -83,29 +83,26 @@
     <div class="col-lg-4 col-md-5">
     <div class="form-container">
         <div class="media-container-column" data-form-type="formoid">
-            <div data-form-alert="" hidden="" class="align-center">
-                Thanks for filling out the form!
-            </div>
-            <form class="mbr-form" action="https://mobirise.com/" method="post" data-form-title="Mobirise Form"><input type="hidden" data-form-email="true" value="PgZhCF6w2e4+K6r71U7ToOuSNUN0FtWnYbCv6rd/k6k9uXU5koAP6KjZeonw/dnFr/t6zsaHNnQe3X+aycGf/OrNZjqZ064x3PKPFGDhYGrjli3tU9ZeoQREGGDwJDAH">
+            <div class="alert alert-danger" role="alert" id="error" style="display: none;" class="align-center"></div>
+            <form id="buy" class="mbr-form" action="/" method="post" data-form-title="Buy" role="form" data-toggle="validator">
                 <div data-for="name">
                     <div class="form-group">
-                        <input type="text" class="form-control px-3" name="name" data-form-field="Name" placeholder="Name" required="" id="name-header15-2i">
+                        <input id="recipient-name" type="text" class="form-control px-3" name="name" data-form-field="Name" placeholder="Name" required id="name-header15-2i" data-error="Please let us know the recipient's name" required>
                     </div>
                 </div>
-                <div data-for="email">
+                <div data-for="info">
                     <div class="form-group">
-                        <input type="email" class="form-control px-3" name="email" data-form-field="Email" placeholder="Email" required="" id="email-header15-2i">
-                    </div>
-                </div>
-                <div data-for="phone">
-                    <div class="form-group">
-                        <input type="tel" class="form-control px-3" name="phone" data-form-field="Phone" placeholder="Phone" id="phone-header15-2i">
+                        <textarea id="recipient-additional-info" class="form-control" id="info" name="info" data-form-field="Info" placeholder="Birthday and favourite hobbies, animals, places or items" rows="3" required data-error="Please let us know something about the recipient" required></textarea>
                     </div>
                 </div>
                 
                 <span class="input-group-btn">
-                    <button href="" type="submit" class="btn btn-secondary btn-form display-4">SEND FORM</button>
+                    <button type="submit" class="btn btn-secondary btn-form display-4">Buy</button>
                 </span>
+
+                <div class="alert alert-success" role="alert" id="success" style="display: none;" class="align-center">
+                    Stickers are on the way!
+                </div>
             </form>
         </div>
     </div>
@@ -158,8 +155,65 @@
   <script src="assets/dropdown/js/script.min.js"></script>
   <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
   <script src="assets/theme/js/script.js"></script>
-  <script src="assets/formoid/formoid.min.js"></script>
-  
-  
+  <!-- <script src="assets/theme/formoid/formoid.min.js"></script> -->
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script>
+      var priceByProduct = {'3month': 3000, '6month': 5000, '12month': 9900};
+      var niceTextByProduct = {'3month': '3 months', '6month': '6 months', '12month': '12 months'};
+      var product = window.location.href.split('#').pop().split('=').pop();
+      var formattedProduct = niceTextByProduct[product];
+      var buyButton = $('form#buy button');
+
+      var handler = StripeCheckout.configure({
+        key: 'pk_test_f7SD5elorg7zf0GTSWQTDVQh',
+        // image: 'assets/images/logo-final-1258x258.png',
+        locale: 'auto',
+        token: function(token) {
+          buyButton.prop("disabled", true);
+          buyButton.text('Buying ' + formattedProduct + '...')
+          console.log(token)
+          $.ajax({
+              url: 'https://wt-1080b541cc4067bc473e93f43f434b82-0.run.webtask.io/webtask-stripe-payment',
+              method: 'POST',
+              contentType: 'application/json; charset=utf-8',
+              data: JSON.stringify({
+                recipientName: $('#recipient-name').val(),
+                recipientAdditionalInfo: $('#recipient-additional-info').val(),
+                product: product,
+                stripeToken: token
+              })
+          }).then(function(stripeCustomer) {
+            $('div#success').show();
+            buyButton.hide();
+          }).fail(function(e) {
+            buyButton.text('Buy ' + formattedProduct);
+            $('div#error').text('There was an error processing the payment. Please try again. Error: ' + e.responseJSON.message);
+            $('div#error').show();
+          });
+        }
+      });
+
+      $(function() {
+        buyButton.text('Buy ' + formattedProduct);
+        $('form#buy').submit(function(e) {
+          e.preventDefault();
+          $('div#error').hide();
+          handler.open({
+            name: 'Stickles packs',
+            description: formattedProduct,
+            panelLabel: 'Buy ' + formattedProduct + ' for',
+            amount: priceByProduct[product] || 0,
+            allowRememberMe: true,
+            zipCode: true,
+            billingAddress: true,
+            shippingAddress: true
+          });
+        });
+      });
+
+      $(window).on('popstate', function() {
+        handler.close();
+      });
+  </script>
 </body>
 </html>
