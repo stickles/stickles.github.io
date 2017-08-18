@@ -1161,7 +1161,7 @@ pre {
 .cid-qssCdspBAw {
   padding-top: 135px;
   padding-bottom: 90px;
-  background-image: url("../../../assets/images/crumpled-paper-1551434-1920x1280.jpg");
+  background-color: #ffffff;
 }
 .cid-qssCdspBAw H1 {
   color: #149dcc;
@@ -1328,6 +1328,7 @@ pre {
 .cid-qsxmJYVMr0 .mbr-text,
 .cid-qsxmJYVMr0 .mbr-section-btn {
   color: #232323;
+  text-align: center;
 }
 .cid-qsxm582cyp {
   padding-top: 0px;
@@ -1341,6 +1342,7 @@ pre {
 .cid-qsxm582cyp .mbr-text,
 .cid-qsxm582cyp .mbr-section-btn {
   color: #232323;
+  text-align: center;
 }
 .cid-qsxhT76tr7 {
   padding-top: 60px;
@@ -1576,7 +1578,7 @@ pre {
   }
 }
 .cid-qsyp2Ncpu0 H1 {
-  color: #232323;
+  color: #149dcc;
 }
 .cid-qsyp2Ncpu0 .mbr-text,
 .cid-qsyp2Ncpu0 .mbr-section-btn {
