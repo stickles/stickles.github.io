@@ -87,15 +87,19 @@
             <form id="buy" class="mbr-form" action="/" method="post" data-form-title="Buy" role="form" data-toggle="validator">
                 <div data-for="name">
                     <div class="form-group">
-                        <input id="recipient-name" type="text" class="form-control px-3" name="name" data-form-field="Name" placeholder="Child's name" required id="name-header15-2i" data-error="Please let us know the recipient's name" required>
+                        <input id="recipient-name" type="text" class="form-control px-3" name="name" data-form-field="Name" placeholder="Child's name" required data-error="Please let us know the recipient's name" required>
                     </div>
                 </div>
+                <div data-for="shipping-address">
+                    <div class="form-group">
+                        <input id="shipping-address" type="search" class="form-control px-3" name="shipping-address" data-form-field="Shipping Address" placeholder="Address to receive Stickles package" required data-error="Please let us know the shipping address" required>
+                    </div>
+                </div>                
                 <div data-for="info">
                     <div class="form-group">
                         <textarea id="recipient-additional-info" class="form-control" id="info" name="info" data-form-field="Info" placeholder="Birthday and favourite animals, hobbies or items (completely optional)." rows="3"></textarea>
                     </div>
                 </div>
-                
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-secondary btn-form display-4">Buy</button>
                 </span>
@@ -157,64 +161,7 @@
   <script src="assets/theme/js/script.js"></script>
   <!-- <script src="assets/theme/formoid/formoid.min.js"></script> -->
   <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script>
-      var priceByProduct = {'3month': 3000, '6month': 5000, '12month': 9900};
-      var niceTextByProduct = {'3month': '3 months', '6month': '6 months', '12month': '12 months'};
-      var product = window.location.href.split('#').pop().split('=').pop();
-      var formattedProduct = niceTextByProduct[product];
-      var buyButton = $('form#buy button');
-
-      var handler = StripeCheckout.configure({
-        key: 'pk_test_f7SD5elorg7zf0GTSWQTDVQh',
-        image: 'assets/images/untitled-2-128x140.png',
-        locale: 'auto',
-        token: function(token, addresses) {
-          buyButton.prop("disabled", true);
-          buyButton.text('Buying ' + formattedProduct + '...')
-          console.log(token)
-          $.ajax({
-              url: 'https://serverless.stickles.com.au/wt-1080b541cc4067bc473e93f43f434b82-0/stripe-payment',
-              method: 'POST',
-              contentType: 'application/json; charset=utf-8',
-              data: JSON.stringify({
-                addresses: addresses,
-                recipientName: $('#recipient-name').val(),
-                recipientAdditionalInfo: $('#recipient-additional-info').val(),
-                product: product,
-                stripeToken: token
-              })
-          }).then(function(stripeCustomer) {
-            $('div#success').show();
-            buyButton.hide();
-          }).fail(function(e) {
-            buyButton.text('Buy ' + formattedProduct);
-            $('div#error').text('There was an error processing the payment. Please try again. Error: ' + e.responseJSON.message);
-            $('div#error').show();
-          });
-        }
-      });
-
-      $(function() {
-        buyButton.text('Buy ' + formattedProduct);
-        $('form#buy').submit(function(e) {
-          e.preventDefault();
-          $('div#error').hide();
-          handler.open({
-            name: 'Stickles package',
-            description: formattedProduct,
-            panelLabel: 'Buy ' + formattedProduct + ' for',
-            amount: priceByProduct[product] || 0,
-            allowRememberMe: true,
-            zipCode: true,
-            billingAddress: true,
-            shippingAddress: true
-          });
-        });
-      });
-
-      $(window).on('popstate', function() {
-        handler.close();
-      });
-  </script>
+  <script src="additional/custom-stripe.js"></script>
+  <script src="additional/custom-address.js"></script>
 </body>
 </html>
