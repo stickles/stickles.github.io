@@ -7,7 +7,7 @@
 
   var handler = StripeCheckout.configure({
     key: 'pk_test_f7SD5elorg7zf0GTSWQTDVQh',
-    image: 'assets/images/untitled-2-128x140.png',
+    image: 'assets/images/stickles-logo-s-128x128.png',
     locale: 'auto',
     token: function(token, addresses) {
       buyButton.prop("disabled", true);
