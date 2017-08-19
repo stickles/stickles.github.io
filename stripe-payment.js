@@ -11,7 +11,7 @@ module.exports = function (context, cb) {
         amount: calculatedAmount,
         currency: 'aud',
         source: context.body.stripeToken.id,
-        metadata: {'product': product, 'recipientName': context.body.recipientName, 'recipientAdditionalInfo': context.body.recipientAdditionalInfo},
+        metadata: {'product': product, 'recipientName': context.body.recipientName, 'recipientAdditionalInfo': context.body.recipientAdditionalInfo, 'addresses': JSON.stringify(context.body.address)},
         description: 'Sticker order: ' + product + ', for: ' + context.body.recipientName + ', with info: ' + context.body.recipientAdditionalInfo
     }, function (error, charge) {
         var status = error ? 400 : 200;
@@ -23,4 +23,3 @@ module.exports = function (context, cb) {
         }
     });
 }
-

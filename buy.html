@@ -168,7 +168,7 @@
         key: 'pk_test_f7SD5elorg7zf0GTSWQTDVQh',
         image: 'assets/images/untitled-2-128x140.png',
         locale: 'auto',
-        token: function(token) {
+        token: function(token, addresses) {
           buyButton.prop("disabled", true);
           buyButton.text('Buying ' + formattedProduct + '...')
           console.log(token)
@@ -177,6 +177,7 @@
               method: 'POST',
               contentType: 'application/json; charset=utf-8',
               data: JSON.stringify({
+                addresses: addresses,
                 recipientName: $('#recipient-name').val(),
                 recipientAdditionalInfo: $('#recipient-additional-info').val(),
                 product: product,
