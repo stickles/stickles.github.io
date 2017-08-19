@@ -1,25 +1,25 @@
-var stripe = require('stripe@4.14.0');
-var priceByProduct = {'3month': 3000, '6month': 5000, '12month': 9900};
+var stripe = require("stripe@4.14.0");
+var priceByProduct = {"3month": 3000, "6month": 5000, "12month": 9900};
 
 module.exports = function (context, cb) {
     var product = context.body.product;
     var calculatedAmount = priceByProduct[product] || 0;
-    // console.log('calculatedAmount: ' + calculatedAmount);
-    // console.log('product: ' + product + ', ' + priceByProduct[product]);
-    // console.log('stripeToken.id: ' + context.body.stripeToken.id);
+    // console.log("calculatedAmount: " + calculatedAmount);
+    // console.log("product: " + product + ", " + priceByProduct[product]);
+    // console.log("stripeToken.id: " + context.body.stripeToken.id);
     stripe(context.secrets.stripeSecretKey).charges.create({
         amount: calculatedAmount,
-        currency: 'aud',
+        currency: "aud",
         source: context.body.stripeToken.id,
-        metadata: {'product': product, 'recipientName': context.body.recipientName, 'recipientAdditionalInfo': context.body.recipientAdditionalInfo, 'shippingAddress': context.body.shippingAddress)},
-        description: 'Sticker order: ' + product + ', for: ' + context.body.recipientName + ', with info: ' + context.body.recipientAdditionalInfo
+        metadata: {"product": product, "recipientName": context.body.recipientName, "recipientAdditionalInfo": context.body.recipientAdditionalInfo, "shippingAddress": context.body.shippingAddress},
+        description: "Sticker order: " + product + ", for: " + context.body.recipientName + ", with info: " + context.body.recipientAdditionalInfo
     }, function (error, charge) {
         var status = error ? 400 : 200;
         
         if(error) {
           cb(error, error.message);
         } else {
-          cb(null, 'Charge applied, thanks!');
+          cb(null, "Charge applied, thanks!");
         }
     });
 }
