@@ -6,7 +6,7 @@
   var buyButton = $('form#buy button');
 
   var handler = StripeCheckout.configure({
-    key: 'pk_test_f7SD5elorg7zf0GTSWQTDVQh',
+    key: 'pk_live_pakif5YRABP3c8DdogpEfqcw',
     image: 'assets/images/stickles-logo-s-128x128.png',
     locale: 'auto',
     token: function(token, addresses) {

@@ -1,4 +1,4 @@
-var stripe = require("stripe@4.14.0");
+var stripe = require("stripe@4.24.0");
 var priceByProduct = {"3month": 3000, "6month": 5000, "12month": 9900};
 
 module.exports = function (context, cb) {
@@ -22,4 +22,4 @@ module.exports = function (context, cb) {
           cb(null, "Charge applied, thanks!");
         }
     });
-}
+};
