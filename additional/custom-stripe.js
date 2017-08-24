@@ -21,6 +21,7 @@
             shippingAddress: $('#shipping-address').val(),
             recipientName: $('#recipient-name').val(),
             recipientAdditionalInfo: $('#recipient-additional-info').val(),
+            fromName: $('#from-name').val(),
             product: product,
             stripeToken: token
           })

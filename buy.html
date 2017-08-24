@@ -87,17 +87,22 @@
             <form id="buy" class="mbr-form" action="/" method="post" data-form-title="Buy" role="form" data-toggle="validator">
                 <div data-for="name">
                     <div class="form-group">
-                        <input id="recipient-name" type="text" class="form-control px-3" name="name" data-form-field="Name" placeholder="Child's name" required data-error="Please let us know the recipient's name" required>
+                        <input id="recipient-name" type="text" class="form-control px-3" name="name" data-form-field="Name" placeholder="Child's name" required data-error="Please let us know the recipient's name">
                     </div>
                 </div>
                 <div data-for="shipping-address">
                     <div class="form-group">
-                        <input id="shipping-address" type="search" class="form-control px-3" name="shipping-address" data-form-field="Shipping Address" placeholder="Address to receive Stickles package" required data-error="Please let us know the shipping address" required>
+                        <input id="shipping-address" type="search" class="form-control px-3" name="shipping-address" data-form-field="Shipping Address" placeholder="Address to receive Stickles package" required data-error="Please let us know the shipping address" >
                     </div>
                 </div>                
-                <div data-for="info">
+                <div data-for="from-name">
                     <div class="form-group">
-                        <textarea id="recipient-additional-info" class="form-control" id="info" name="info" data-form-field="Info" placeholder="Birthday and favourite animals, hobbies or items (completely optional)." rows="3"></textarea>
+                        <input id="from-name" type="text" class="form-control px-3" name="from-name" data-form-field="From Name" placeholder="From e.g. Grandma & Grandpa (optional)">
+                    </div>
+                </div>
+                <div data-for="info"> 
+                    <div class="form-group">
+                        <textarea id="recipient-additional-info" class="form-control" id="info" name="info" data-form-field="Info" placeholder="Birthday and favourite animals, hobbies or items (completely optional)" rows="3"></textarea>
                     </div>
                 </div>
                 <span class="input-group-btn">
