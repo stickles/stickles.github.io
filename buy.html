@@ -12,11 +12,11 @@
   <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,100i,300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
-  <link href="assets/fonts/style.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
   
@@ -75,15 +75,19 @@
     <div class="container align-right">
 <div class="row">
     <div class="mbr-white col-lg-8 col-md-7 content-container">
-        <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-2">
+        <h1 id="buy-header" class="mbr-section-title align-left mbr-bold pb-3 mbr-fonts-style display-2">
             Buy Package</h1>
-        <p class="mbr-text pb-3 mbr-fonts-style display-5">
-            Let us know the child's name and if you'd like, their birthday and favourite animals, hobbies or items so we can personalise their package.</p>
+        <p class="mbr-text pb-3 align-left mbr-fonts-style display-5">
+            Let us know the child's name, birthday (or other occasion) and if you'd like, a personalised message to be sent with the first package. 
+        </p>
+        <p class="mbr-text pb-3 align-left mbr-fonts-style display-5">
+          The first Stickles package will be sent out mid-September or for their birthday.
+        </p>
     </div>
     <div class="col-lg-4 col-md-5">
     <div class="form-container">
         <div class="media-container-column" data-form-type="formoid">
-            <div class="alert alert-danger display-5" role="alert" id="error" style="display: none;" class="align-center"></div>
+            <div class="alert alert-danger display-3" role="alert" id="error" style="display: none;" class="align-center"></div>
             <form id="buy" class="mbr-form" action="/" method="post" data-form-title="Buy" role="form" data-toggle="validator">
                 <div data-for="name">
                     <div class="form-group">
@@ -102,17 +106,17 @@
                 </div>
                 <div data-for="info"> 
                     <div class="form-group">
-                        <textarea id="recipient-additional-info" class="form-control" id="info" name="info" data-form-field="Info" placeholder="Birthday and favourite animals, hobbies or items (completely optional)" rows="3"></textarea>
+                        <textarea id="recipient-additional-info" class="form-control" id="info" name="info" data-form-field="Info" placeholder="Birthday and personalised note to be sent with the first package (optional)" rows="3"></textarea>
                     </div>
                 </div>
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-secondary btn-form display-4">BUY</button>
+                    <button type="submit" class="btn btn-secondary btn-form display-4" style="text-transform: uppercase;">BUY</button>
                 </span>
-
-                <div class="alert alert-success display-5" role="alert" id="success" style="display: none;" class="align-center">
-                    Thank you. Stickers are on the way!
-                </div>
             </form>
+
+            <div class="alert alert-success mbr-text align-center display-5" role="alert" id="success" style="font-size: 110%; display: none;" class="align-center">
+                Thank you. Stickers are on the way!
+            </div>
         </div>
     </div>
     </div>
@@ -158,6 +162,7 @@
 
 
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/smooth-scroll/smooth-scroll.js"></script>

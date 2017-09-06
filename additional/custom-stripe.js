@@ -1,6 +1,6 @@
 (function(){
   var priceByProduct = {'3month': 3000, '6month': 5000, '12month': 9900};
-  var niceTextByProduct = {'3month': '3 MONTHS', '6month': '6 MONTHS', '12month': '12 MONTHS'};
+  var niceTextByProduct = {'3month': '3 Month', '6month': '6 Month', '12month': '12 Month'};
   var product = window.location.href.split('#').pop().split('=').pop();
   var formattedProduct = niceTextByProduct[product];
   var buyButton = $('form#buy button');
@@ -26,8 +26,9 @@
             stripeToken: token
           })
       }).then(function(stripeCustomer) {
-        $('div#success').show();
         buyButton.hide();
+        $('div#success').show();
+        $('form#buy').hide();
       }).fail(function(e) {
         buyButton.text('BUY ' + formattedProduct);
         $('div#error').text('There was an error processing the payment. Please try again. Error: ' + e.responseJSON.message);
@@ -37,7 +38,8 @@
   });
 
   $(function() {
-    buyButton.text('BUY ' + formattedProduct);
+    buyButton.text('BUY ' + formattedProduct + ' Package');
+    $('h1#buy-header').text('Buy ' + formattedProduct + ' Package')
 
     $('form#buy').submit(function(e) {
       e.preventDefault();
