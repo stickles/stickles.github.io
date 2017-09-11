@@ -29,6 +29,7 @@
         buyButton.hide();
         $('div#success').show();
         $('form#buy').hide();
+        fbq('track', 'Purchase', {value: '' + priceByProduct[product]/100, currency: 'AUD'});
       }).fail(function(e) {
         buyButton.text('BUY ' + formattedProduct);
         $('div#error').text('There was an error processing the payment. Please try again. Error: ' + e.responseJSON.message);
@@ -44,6 +45,7 @@
     $('form#buy').submit(function(e) {
       e.preventDefault();
       $('div#error').hide();
+      fbq('track', 'InitiateCheckout');
       handler.open({
         name: 'Stickles package',
         description: formattedProduct,
