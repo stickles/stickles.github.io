@@ -1,6 +1,6 @@
 (function(){
-  var priceByProduct = {'3month': 3000, '6month': 5000, '12month': 9900};
-  var niceTextByProduct = {'3month': '3 Month', '6month': '6 Month', '12month': '12 Month'};
+  var priceByProduct = {'2month': 2000, '3month': 3000, '6month': 5000};
+  var niceTextByProduct = {'2month': '2 Month', '3month': '3 Month', '6month': '6 Month'};
   var product = window.location.href.split('#').pop().split('=').pop();
   var formattedProduct = niceTextByProduct[product];
   var buyButton = $('form#buy button');
@@ -30,6 +30,7 @@
         $('div#success').show();
         $('form#buy').hide();
         fbq('track', 'Purchase', {value: '' + priceByProduct[product]/100, currency: 'AUD'});
+        ga('send', 'event', 'Purchase', 'Complete');
       }).fail(function(e) {
         buyButton.text('BUY ' + formattedProduct);
         $('div#error').text('There was an error processing the payment. Please try again. Error: ' + e.responseJSON.message);
@@ -46,6 +47,7 @@
       e.preventDefault();
       $('div#error').hide();
       fbq('track', 'InitiateCheckout');
+      ga('send', 'event', 'Purchase', 'Initiate');
       handler.open({
         name: 'Stickles package',
         description: formattedProduct,

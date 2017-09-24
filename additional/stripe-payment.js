@@ -1,18 +1,18 @@
 var stripe = require("stripe@4.24.0");
-var priceByProduct = {"3month": 3000, "6month": 5000, "12month": 9900};
+var priceByProduct = {"2month": 2000, "3month": 3000, "6month": 5000};
+var descriptionByProduct = {"2month": "2 month", "3month": "3 month", "6month": "6 month"}
 
 module.exports = function (context, cb) {
-    var product = context.body.product;
+    var cxt = context.body;
+    var product = cxt.product;
     var calculatedAmount = priceByProduct[product] || 0;
-    // console.log("calculatedAmount: " + calculatedAmount);
-    // console.log("product: " + product + ", " + priceByProduct[product]);
-    // console.log("stripeToken.id: " + context.body.stripeToken.id);
     stripe(context.secrets.stripeSecretKey).charges.create({
         amount: calculatedAmount,
         currency: "aud",
-        source: context.body.stripeToken.id,
-        metadata: {"product": product, "recipientName": context.body.recipientName, "recipientAdditionalInfo": context.body.recipientAdditionalInfo, "shippingAddress": context.body.shippingAddress, "fromName": context.body.fromName},
-        description: "Sticker order: " + product + ", for: " + context.body.recipientName + ", with info: " + context.body.recipientAdditionalInfo
+        source: cxt.stripeToken.id,
+        receipt_email: cxt.stripeToken.email,
+        metadata: {"product": product, "recipientName": cxt.recipientName, "recipientAdditionalInfo": cxt.recipientAdditionalInfo, "shippingAddress": cxt.shippingAddress, "fromName": cxt.fromName},
+        description: descriptionByProduct[product] + " sticker subscription"
     }, function (error, charge) {
         var status = error ? 400 : 200;
         
