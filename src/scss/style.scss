@@ -1,0 +1,62 @@
+// Import bootstrap variable overrides then the bootstrap source
+@import "custom-variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+$fixed-heading-height: 102px;
+
+.display-5 {
+  font-size: 2.1rem;
+}
+
+.display-6 {
+  font-size: 1.8rem;
+}
+
+.display-7 {
+  font-size: 1.3rem;
+}
+
+.display-8 {
+  font-size: 1.15rem;
+}
+
+div#home {
+  margin-top: $fixed-heading-height;
+  padding-bottom: 7rem;
+  background: url("/img/header.jpg");
+  position: relative;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: 50% -160px;
+  //  min-height: 400px;
+  background-repeat: no-repeat;
+}
+
+div#buy-info {
+  margin-top: $fixed-heading-height;
+}
+
+.link-target:before {
+  display: block;
+  content: " ";
+  margin-top: -$fixed-heading-height;
+  height: $fixed-heading-height;
+  visibility: hidden;
+}
+
+hr {
+  height: 2px;
+}
+
+.card.most-popular {
+  border-width: medium;
+}
+
+.shadow {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  }
+}

@@ -1,0 +1,151 @@
+//
+// Color system
+//
+
+$white:  #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:  #000 !default;
+
+$grays: (
+  100: $gray-100,
+  200: $gray-200,
+  300: $gray-300,
+  400: $gray-400,
+  500: $gray-500,
+  600: $gray-600,
+  700: $gray-700,
+  800: $gray-800,
+  900: $gray-900
+);
+
+$blue:    #149dcc;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #ed555b !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8;
+
+$colors: (
+  blue: $blue,
+  indigo: $indigo,
+  purple: $purple,
+  pink: $pink,
+  red: $red,
+  orange: $orange,
+  yellow: $yellow,
+  green: $green,
+  teal: $teal,
+  cyan: $cyan,
+  white: $white,
+  gray: $gray-600,
+  gray-dark: $gray-800
+);
+
+$theme-colors: (
+  primary: $blue,
+  secondary: $red,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
+);
+
+// Buttons
+
+$btn-border-radius:           0.8rem;
+$btn-border-radius-lg:        1.2rem;
+$btn-border-radius-sm:        0.5rem;
+
+// Body
+
+$body-bg:    $white;
+$body-color: $blue;
+
+// Shadows
+$enable-shadows:            true;
+$enable-gradients:          true;
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100,100i,300,300i,400,400i,600,600i,700,700i);
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif:      "Josefin Slab", "Helvetica Neue", Arial, sans-serif;
+//$font-family-monospace:       "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+//$font-family-base:            $font-family-sans-serif !default;
+//// stylelint-enable value-keyword-case
+//
+//$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+//$font-size-lg:                1.25rem !default;
+//$font-size-sm:                .875rem !default;
+//
+//$font-weight-light:           300 !default;
+//$font-weight-normal:          400 !default;
+//$font-weight-bold:            700 !default;
+//
+//$font-weight-base:            $font-weight-normal !default;
+//$line-height-base:            1.5 !default;
+//
+//$h1-font-size:                2.5rem !default;
+//$h2-font-size:                2rem !default;
+//$h3-font-size:                1.75rem !default;
+//$h4-font-size:                1.5rem !default;
+//$h5-font-size:                1.25rem !default;
+//$h6-font-size:                1rem !default;
+//
+//$headings-margin-bottom:      ($spacer / 2) !default;
+//$headings-font-family:        inherit !default;
+//$headings-font-weight:        500 !default;
+//$headings-line-height:        1.1 !default;
+//$headings-color:              inherit !default;
+//
+//$display1-size:               6rem !default;
+//$display2-size:               5.5rem !default;
+//$display3-size:               4.5rem !default;
+//$display4-size:               3.5rem !default;
+//
+//$display1-weight:             300 !default;
+//$display2-weight:             300 !default;
+//$display3-weight:             300 !default;
+//$display4-weight:             300 !default;
+//$display-line-height:         $headings-line-height !default;
+//
+//$lead-font-size:              1.25rem !default;
+//$lead-font-weight:            300 !default;
+//
+//$small-font-size:             80% !default;
+//
+//$text-muted:                  $gray-600 !default;
+//
+//$blockquote-small-color:      $gray-600 !default;
+//$blockquote-font-size:        ($font-size-base * 1.25) !default;
+//
+//$hr-border-color:             rgba($black,.1) !default;
+//$hr-border-width:             $border-width !default;
+//
+//$mark-padding:                .2em !default;
+//
+//$dt-font-weight:              $font-weight-bold !default;
+//
+//$kbd-box-shadow:              inset 0 -.1rem 0 rgba($black,.25) !default;
+//$nested-kbd-font-weight:      $font-weight-bold !default;
+//
+//$list-inline-padding:         5px !default;
+//
+//$mark-bg: #fcf8e3 !default;

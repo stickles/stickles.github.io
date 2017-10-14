@@ -1,0 +1,21 @@
+{
+  "name": "stickles",
+  "version": "1.0.0",
+  "description": "Stickles sticker website",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "B. Walsham",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "4.0.0-beta",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.11.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
