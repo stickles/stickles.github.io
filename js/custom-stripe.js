@@ -23,6 +23,7 @@
     // key: 'pk_test_f7SD5elorg7zf0GTSWQTDVQh',
     image: 'img/icon.png',
     locale: 'auto',
+    currency: 'AUD',
     token: function(token, addresses) {
       formParentDiv.hide();
       processingAlert.show();
